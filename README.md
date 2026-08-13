@@ -3,7 +3,7 @@
 A 64-bit XGMII → Ethernet → IPv4 → UDP header-stripping pipeline in Verilog,
 built for minimum wire-to-payload latency. At 156.25 MHz with a 64-bit datapath
 it sustains 10 Gbit/s line rate, and delivers the first payload byte **6 clock
-cycles (38.4 ns)** after the first frame byte appears on the wire — which is the
+cycles (38.4 ns)** after the first frame byte appears on the wire, which is the
 hardware floor for a 64-bit bus (see [Why 6 is the floor](#why-6-is-the-floor)).
 
 Everything below is measured, not estimated: latency and functional results come
@@ -139,7 +139,7 @@ bytes are delivered, the beat is terminated with `tuser=1`.
 | UDP length sane and consistent with IP total length | cycle 5 |
 | destination port matches the filter | cycle 5 |
 
-So this is cut-through with **no speculation** — a packet is never partially
+So this is cut-through with **no speculation**, a packet is never partially
 emitted and then retracted. That works because the IPv4 checksum covers only the
 header, which is complete in word 4. Anything that had to be validated across
 the payload (a UDP checksum, or the Ethernet FCS) would have to be forwarded
