@@ -1,10 +1,7 @@
 # 10 GbE UDP receive parser
 
-Was interested in some HFT technology, figured I'd try build my own UDP parser to 
-learn a bit about how it works, im sure its not perfect but it is pretty strong, I tried
-to optimise as much as possible.
-
-
+I got interested in HFT technology and figured the best way to understand a feed
+handler was to build one.
 Its basically a 64-bit XGMII → Ethernet → IPv4 → UDP header-stripping pipeline in Verilog,
 built for minimum wire-to-payload latency. At 156.25 MHz with a 64-bit datapath
 it sustains 10 Gbit/s line rate, and delivers the first payload byte **6 clock
